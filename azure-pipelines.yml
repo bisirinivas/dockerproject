@@ -3,7 +3,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+ paths:
+   include:
+     - result/*
+
 
 resources:
 - repo: self
@@ -11,7 +14,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '286cf6f7-166b-42de-a8df-04e56d23cd19'
-  imageRepository: 'votingapp'
+  imageRepository: 'resultapp'
   containerRegistry: 'mydevopscicd.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
   tag: '$(Build.BuildId)'
