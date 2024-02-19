@@ -23,7 +23,7 @@ variables:
 pool: azureagent999
 stages:
 - stage: Build
-  displayName: Build and push stage
+  displayName: Build
   jobs:
   - job: Build
     displayName: Build
