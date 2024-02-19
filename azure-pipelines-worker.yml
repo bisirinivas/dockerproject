@@ -38,7 +38,7 @@ stages:
         Dockerfile: 'worker/Dockerfile'
         tags: '$(tag)'
 - stage: Push
-  displayName: Push stage
+  displayName: Push
   jobs:
   - job: Push
     displayName: Push
