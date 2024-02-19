@@ -1,0 +1,55 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+ paths:
+   include:
+     - vote/*
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '0e94c28a-c060-4893-b204-e4e0a0d9d239'
+  imageRepository: 'votingapp'
+  containerRegistry: 'azurecicdcontainer.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+pool: azureagent999
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build an image
+#    pool:
+#      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'build'
+        Dockerfile: 'vote/Dockerfile'
+        tags: '$(tag)'
+- stage: Push
+  displayName: Push
+  jobs:
+  - job: Push
+    displayName: Build an image
+#    pool:
+#      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: push an image to container registry
+      inputs:
+        containerRegistry: '$(dockerRegistryServiceConnection)'
+        repository: '$(imageRepository)'
+        command: 'push'
+        tags: '$(tag)'
