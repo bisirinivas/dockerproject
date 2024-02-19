@@ -8,3 +8,14 @@ trigger:
 
 pool:
   vmImage: 'azureagent999'
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: TerraformInstaller@1
+      inputs:
+        terraformVersion: 'latest'
