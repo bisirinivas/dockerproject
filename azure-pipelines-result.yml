@@ -12,14 +12,14 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '95ac6bca-a475-481a-8072-34cf5a8f28f7'
-  imageRepository: 'resultapp'
+  dockerRegistryServiceConnection: '1e9d7314-0a50-40bd-a7fe-4fb1e18ca35a'
+  imageRepository: 'votingapp'
   containerRegistry: 'azurecicdcontainer.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/result/Dockerfile'
   tag: '$(Build.BuildId)'
 
-pool:
-  vmImage: ubuntu-latest
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
