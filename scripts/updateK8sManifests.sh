@@ -16,6 +16,11 @@ cd /tmp/temp_repo
 # For example, let's say you want to change the image tag in a deployment.yaml file
 sed -i "s|image:.*|image: azurecicdcontainer/$2:$3|g" k8s-specifications/$1-deployment.yaml
 
+
+# Configure Git user identity
+git config --global user.email "bisirinivas@gmail.com"
+git config --global user.name "bisirinivas"
+
 # Add the modified files
 git add .
 
