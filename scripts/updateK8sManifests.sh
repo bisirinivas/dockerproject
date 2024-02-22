@@ -6,8 +6,6 @@ set -x
 REPO_URL="https://vujse3rsqeobm2pr63r5tgsb577hb2uqrwmx5ve27e5nrqi7vbua@dev.azure.com/bisirinivas/voting-app/_git/voting-app"
 
 
-https://bisirinivas@dev.azure.com/bisirinivas/voting-app/_git/voting-app
-
 # Clone the git repository into the /tmp directory
 git clone "$REPO_URL" /tmp/temp_repo
 
