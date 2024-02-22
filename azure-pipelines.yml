@@ -54,5 +54,5 @@ stages:
       
     - task: Bash@3
       inputs:
-       targetType: 'inline'
-       script: 'ls'
+        filePath: '$(System.DefaultWorkingDirectory)/scripts/updateK8sManifests.sh'
+        arguments: 'ls'
