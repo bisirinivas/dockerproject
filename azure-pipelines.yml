@@ -10,6 +10,7 @@ trigger:
 resources:
 - repo: self
 
+
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '1e9d7314-0a50-40bd-a7fe-4fb1e18ca35a'
@@ -20,6 +21,7 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  system.debug: true
 
 stages:
 - stage: Build
@@ -47,5 +49,9 @@ stages:
     steps:
     - task: ShellScript@2
       inputs:
-        scriptPath: 'scripts/updateK8sManifests.sh'
+        scriptPath: '$(System.wo)/scripts/updateK8sManifests.sh'
         args: 'vote $(imageRepository) $(tag)'  
+    - task: Bash@3
+      inputs:
+       targetType: 'inline'
+       script: 'ls -la'
